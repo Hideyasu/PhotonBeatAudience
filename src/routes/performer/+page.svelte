@@ -17,6 +17,9 @@
 	onMount(() => {
 		subscribeToComments((data) => {
 			if (data.body) {
+				if (data.body == '🔥') {
+					console.log("reaction")
+				}
 				const newMessage = {
 					id: messageId++,
 					text: data.body,

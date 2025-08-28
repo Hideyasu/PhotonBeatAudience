@@ -27,6 +27,12 @@
 			message = '';
 		}
 	}
+
+	function sendReactionFire() {
+		message = "🔥";
+		sendComment(message)
+		message = ''
+	}
 </script>
 
 <div class="min-h-screen bg-gradient-to-br from-purple-600 to-pink-600 p-8">
@@ -68,7 +74,7 @@
 			</form>
 
 			<div class="reaction-buttons pt-6 flex justify-between px-6">
-				<button type="button" aria-label="炎のリアクション">
+				<button onclick={sendReactionFire} type="button" aria-label="炎のリアクション">
 					<Fa icon={faFire} />
 				</button>
 				<button type="button" aria-label="雷のリアクション">
