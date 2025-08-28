@@ -36,6 +36,10 @@
 		"vite": "^7.0.4"
 	},
 	"dependencies": {
-		"@rails/actioncable": "^8.0.201"
+		"@fortawesome/fontawesome-svg-core": "^7.0.0",
+		"@fortawesome/free-solid-svg-icons": "^7.0.0",
+		"@fortawesome/svelte-fontawesome": "^0.2.4",
+		"@rails/actioncable": "^8.0.201",
+		"svelte-fa": "^4.0.4"
 	}
 }

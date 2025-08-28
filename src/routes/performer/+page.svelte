@@ -40,13 +40,13 @@
 		{/each}
 	</div>
 	
-	<div class="status-bar">
+	<!-- <div class="status-bar">
 		<h1 class="title">Performer View</h1>
 		<div class="connection-status">
 			<div class="status-dot"></div>
 			<span>Live</span>
 		</div>
-	</div>
+	</div> -->
 </div>
 
 <style>
@@ -54,7 +54,7 @@
 		position: relative;
 		width: 100vw;
 		height: 100vh;
-		background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+		background: #008000;
 		overflow: hidden;
 	}
 	
