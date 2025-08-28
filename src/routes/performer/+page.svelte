@@ -5,9 +5,21 @@
 	let messages = $state([]);
 	let messageId = 0;
 
+	function getRandomColor(){
+		const letters = '0123456789ABCDEF';
+		let color = '#';
+		for(let i = 0; i < 6; i++){
+			color += letters[Math.floor(Math.random() * 16)];
+		}
+		return color;
+	}
+
 	onMount(() => {
 		subscribeToComments((data) => {
 			if (data.body) {
+				if (data.body == '🔥') {
+					console.log("reaction")
+				}
 				const newMessage = {
 					id: messageId++,
 					text: data.body,
@@ -18,7 +30,7 @@
 				// 10秒後にメッセージを削除
 				setTimeout(() => {
 					messages = messages.filter(m => m.id !== newMessage.id);
-				}, 10000);
+				}, 11600);
 			}
 		});
 	});
@@ -33,19 +45,14 @@
 		{#each messages as message (message.id)}
 			<div 
 				class="message"
-				style="animation-delay: {Math.random() * 0.5}s; top: {Math.random() * 80 + 10}%"
+				style="animation-delay: {Math.random() * 0.5}s;
+				top: {Math.random() * 80 + 10}%;
+				color: {getRandomColor()};
+				"
 			>
 				{message.text}
 			</div>
 		{/each}
-	</div>
-	
-	<div class="status-bar">
-		<h1 class="title">Performer View</h1>
-		<div class="connection-status">
-			<div class="status-dot"></div>
-			<span>Live</span>
-		</div>
 	</div>
 </div>
 
@@ -54,7 +61,7 @@
 		position: relative;
 		width: 100vw;
 		height: 100vh;
-		background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+		background: #008000;
 		overflow: hidden;
 	}
 	
