@@ -2,7 +2,8 @@
 	// import Fa from "svelte-fa"
 	import { onMount, onDestroy } from 'svelte';
 	import { subscribeToComments, sendComment, disconnectCable } from '$lib/cable.js';
-	// import { faFire } from '@fortawesome/free-solid-svg-icons';
+	import Fa from 'svelte-fa';
+	import { faFire, faBolt, faThumbsDown, faGrinTears } from '@fortawesome/free-solid-svg-icons';
 
 	let message = $state('');
 	let isConnected = $state(false);
@@ -56,7 +57,7 @@
 						rows="4"
 					></textarea>
 				</div>
-
+				
 				<button
 					type="submit"
 					disabled={!message.trim()}
@@ -64,10 +65,22 @@
 				>
 					送信
 				</button>
-				<div class="reaction-buttons">
-					
-				</div>
 			</form>
+
+			<div class="reaction-buttons pt-6 flex justify-between px-6">
+				<button type="button" aria-label="炎のリアクション">
+					<Fa icon={faFire} />
+				</button>
+				<button type="button" aria-label="雷のリアクション">
+					<Fa icon={faBolt} />
+				</button>
+				<button type="button" aria-label="バッドボタン">
+					<Fa icon={faThumbsDown} />
+				</button>
+				<button type="button" aria-label="笑いのリアクション">
+					<Fa icon={faGrinTears} />
+				</button>
+			</div>
 
 			<div class="mt-6 border-t border-white/20 pt-6">
 				<p class="text-center text-sm text-white/70">
