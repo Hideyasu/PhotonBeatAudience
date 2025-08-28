@@ -1,6 +1,6 @@
 import { createConsumer } from '@rails/actioncable';
 
-const CABLE_URL = 'ws://localhost:3000/cable';
+const CABLE_URL = 'wss://photonbeatbackend.onrender.com/cable';
 
 let consumer = null;
 let commentsChannel = null;
