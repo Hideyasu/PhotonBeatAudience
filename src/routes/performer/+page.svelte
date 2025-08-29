@@ -17,83 +17,7 @@
 	onMount(() => {
 		subscribeToComments((data) => {
 			if (data.body) {
-				if (data.body == '🔥') {
-					const flame = document.querySelector('.flame-effect');
-					if (flame) {
-						// 画面中央に表示
-						flame.style.top = '50%';
-						flame.style.left = '50%';
-						flame.style.transform = 'translate(-50%, -50%)';
-
-						// エフェクトを表示
-						flame.style.display = 'block';
-						flame.classList.add('active');
-
-						// アニメーション終了後にクラスを削除してリセット
-						setTimeout(() => {
-							flame.style.display = 'none';
-							flame.classList.remove('active');
-						}, 1500); // アニメーション時間と合わせる
-						return;
-					}
-				} else if (data.body == '⚡') {
-					const bolt = document.querySelector('.bolt-effect');
-					if (bolt) {
-						// 画面中央に表示
-						bolt.style.top = '50%';
-						bolt.style.left = '50%';
-						bolt.style.transform = 'translate(-50%, -50%)';
-
-						// エフェクトを表示
-						bolt.style.display = 'block';
-						bolt.classList.add('active');
-
-						// アニメーション終了後にクラスを削除してリセット
-						setTimeout(() => {
-							bolt.style.display = 'none';
-							bolt.classList.remove('active');
-						}, 1500); // アニメーション時間と合わせる
-						return;
-					}
-				} else if (data.body == '👎') {
-					const bad = document.querySelector('.bad-effect');
-					if (bad) {
-						// 画面中央に表示
-						bad.style.top = '50%';
-						bad.style.left = '50%';
-						bad.style.transform = 'translate(-50%, -50%)';
-
-						// エフェクトを表示
-						bad.style.display = 'block';
-						bad.classList.add('active');
-
-						// アニメーション終了後にクラスを削除してリセット
-						setTimeout(() => {
-							bad.style.display = 'none';
-							bad.classList.remove('active');
-						}, 1500); // アニメーション時間と合わせる
-						return;
-					}
-				} else if (data.body == '😂') {
-					const mocking = document.querySelector('.mocking-effect');
-					if (mocking) {
-						// 画面中央に表示
-						mocking.style.top = '50%';
-						mocking.style.left = '50%';
-						mocking.style.transform = 'translate(-50%, -50%)';
-
-						// エフェクトを表示
-						mocking.style.display = 'block';
-						mocking.classList.add('active');
-
-						// アニメーション終了後にクラスを削除してリセット
-						setTimeout(() => {
-							mocking.style.display = 'none';
-							mocking.classList.remove('active');
-						}, 1500); // アニメーション時間と合わせる
-						return;
-					}
-				}
+				
 				const newMessage = {
 					id: messageId++,
 					text: data.body,
@@ -243,6 +167,119 @@
 		}
 	}
 
+	.flame-effect-wrapper {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		font-size: 5rem;
+		z-index: 1000;
+		pointer-events: none;
+		/* アクティブになった時に表示 */
+		display: none;
+	}
+	.flame-effect-wrapper.active {
+		display: block;
+	}
+
+	@keyframes wobble {
+		0%,
+		100% {
+			transform: translateY(0) scale(1.1);
+		}
+		50% {
+			transform: translateY(-5px) scale(1.2);
+		}
+	}
+
+	.flame-emoji {
+		animation: wobble 0.8s ease-in-out infinite alternate;
+		position: relative;
+		z-index: 2; /* グローより手前に表示 */
+	}
+
+	@keyframes pulseGlow {
+		0%,
+		100% {
+			box-shadow:
+				0 0 20px 10px #ff9900,
+				0 0 40px 20px #ff6600,
+				0 0 60px 30px #ff3300;
+		}
+		50% {
+			box-shadow:
+				0 0 30px 15px #ff9900,
+				0 0 50px 25px #ff6600,
+				0 0 70px 35px #ff3300;
+		}
+	}
+
+	.flame-glow {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 100px; /* サイズ調整 */
+		height: 100px;
+		border-radius: 50%;
+		background: radial-gradient(circle, #ffcc00 0%, transparent 70%);
+		animation: pulseGlow 1s ease-in-out infinite;
+		z-index: 1; /* 炎の背後に表示 */
+	}
+
+	.flame-particles {
+		position: absolute;
+		top: 100%; /* 炎の下から開始 */
+		left: 50%;
+		width: 5px;
+		height: 5px;
+		border-radius: 50%;
+		background-color: #ff9900;
+		box-shadow: 0 0 5px #ff9900;
+		animation:
+			riseAndFade 1.5s linear forwards,
+			flicker 0.2s infinite; /* ゆらぎを追加 */
+	}
+
+	@keyframes flicker {
+		0%,
+		100% {
+			opacity: 0.8;
+			transform: scale(1);
+		}
+		50% {
+			opacity: 1;
+			transform: scale(1.2);
+		}
+	}
+
+	/* 複数の火の粉を表現するために疑似要素を使う */
+	.flame-particles::before,
+	.flame-particles::after {
+		content: '';
+		position: absolute;
+		width: 3px;
+		height: 3px;
+		border-radius: 50%;
+		background-color: #ffcc00;
+		box-shadow: 0 0 3px #ffcc00;
+		animation:
+			riseAndFade 1.8s linear forwards,
+			flicker 0.2s infinite;
+	}
+
+	.flame-particles::before {
+		top: -10px;
+		left: 10px;
+		animation-delay: 0.3s;
+	}
+
+	.flame-particles::after {
+		top: -20px;
+		left: -15px;
+		animation-delay: 0.6s;
+	}
+
 	.flame-effect,
 	.bolt-effect,
 	.bad-effect,
@@ -348,6 +385,4 @@
 	.mocking-effect.active {
 		animation: bounce 1.5s ease-out forwards;
 	}
-
-	
 </style>
