@@ -21,7 +21,7 @@
 
 	<section class="main-content">
 		<h2 class="main-title">PHOTON BEAT</h2>
-		<p class="description">桃山大学の天才ピアニストによるライブ配信</p>
+		<p class="description">桃山学院大学の天才ピアニストによるライブ配信</p>
 
 		<div class="button-group">
 			<button on:click={startGame} class="cta-button pulse"> LIVE NOW </button>
