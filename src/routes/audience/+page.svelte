@@ -33,6 +33,21 @@
 		sendComment(message)
 		message = ''
 	}
+	function sendReactionThunder() {
+		message = "⚡";
+		sendComment(message)
+		message = ''
+	}
+	function sendReactionBad() {
+		message = "👎";
+		sendComment(message)
+		message = ''
+	}
+	function sendReactionMocking() {
+		message = "😂";
+		sendComment(message)
+		message = ''
+	}
 </script>
 
 <div class="min-h-screen bg-gradient-to-br from-purple-600 to-pink-600 p-8">
@@ -75,16 +90,20 @@
 
 			<div class="reaction-buttons pt-6 flex justify-between px-6">
 				<button onclick={sendReactionFire} type="button" aria-label="炎のリアクション">
-					<Fa icon={faFire} />
+					<!-- <Fa icon={faFire} /> -->
+					<span>🔥</span>
 				</button>
-				<button type="button" aria-label="雷のリアクション">
-					<Fa icon={faBolt} />
+				<button onclick={sendReactionThunder} type="button" aria-label="雷のリアクション">
+					<!-- <Fa icon={faBolt} /> -->
+					<span>⚡</span>
 				</button>
-				<button type="button" aria-label="バッドボタン">
-					<Fa icon={faThumbsDown} />
+				<button onclick={sendReactionBad} type="button" aria-label="バッドボタン">
+					<!-- <Fa icon={faThumbsDown} /> -->
+					<span>👎</span>
 				</button>
-				<button type="button" aria-label="笑いのリアクション">
-					<Fa icon={faGrinTears} />
+				<button onclick={sendReactionMocking} type="button" aria-label="笑いのリアクション">
+					<!-- <Fa icon={faGrinTears} /> -->
+					<span>😂</span>
 				</button>
 			</div>
 
